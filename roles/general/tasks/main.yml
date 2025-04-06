@@ -7,5 +7,4 @@
     line: "PasswordAuthentication no"
     state: present
     backup: yes
-  become: yes
   notify: Restart ssh server
