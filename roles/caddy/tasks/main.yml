@@ -1,0 +1,12 @@
+---
+- name: Ensure Caddy is installed
+  ansible.builtin.apt:
+    pkg:
+      - caddy
+    update_cache: true
+
+- name: Copy caddyfile
+  ansible.builtin.copy:
+    src: Caddyfile
+    dest: /etc/caddy/Caddyfile
+  notify: Reload Caddy
