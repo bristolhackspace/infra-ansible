@@ -1,0 +1,11 @@
+---
+- name: Disable password login
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    insertafter: '^#PasswordAuthentication '
+    line: "PasswordAuthentication no"
+    state: present
+    backup: yes
+  become: yes
+  notify: Restart ssh server
