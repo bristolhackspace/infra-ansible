@@ -1,0 +1,30 @@
+- name: Crowdsec add repository
+  deb822_repository:
+    name: crowdsec
+    uris: "https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution | lower  }}"
+    signed_by: https://packagecloud.io/crowdsec/crowdsec/gpgkey
+    suites: ["{{ ansible_distribution_release|lower }}"]
+    components: [main]
+    state: present
+    enabled: true
+
+- name: Ensure Firewall related tools are installed
+  ansible.builtin.apt:
+    pkg:
+      - nftables
+      - crowdsec
+      - crowdsec-firewall-bouncer-nftables
+    update_cache: true
+
+- name: Update Nftables configuration
+  ansible.builtin.template:
+    src: nftables.conf.j2
+    dest: /etc/nftables.conf
+    group: root
+    owner: root
+  notify: Reload firewall services
+
+- name: Enroll crowdsec
+  ansible.builtin.command: cscli console enroll --name {{ crowdsec_enroll_name }} {{ crowdsec_enroll_key }}
+  creates: /etc/crowdsec/online_api_credentials.yaml
+  when: crowdsec_enroll_key is defined

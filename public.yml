@@ -1,4 +1,4 @@
 ---
-- hosts: public_webservers
+- hosts: webservers
   roles:
-    - influxdb
+    - firewall

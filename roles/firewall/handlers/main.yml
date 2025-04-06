@@ -1,0 +1,12 @@
+---
+- name: Reload nftables
+  ansible.builtin.service:
+    name: nftables
+    state: reloaded
+  listen: "Reload firewall services"
+
+- name: Reload crowdsec
+  ansible.builtin.service:
+    name: crowdsec
+    state: reloaded
+  listen: "Reload firewall services"
