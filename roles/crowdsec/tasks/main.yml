@@ -1,0 +1,16 @@
+- name: Crowdsec add repository
+  deb822_repository:
+    name: crowdsec
+    uris: "https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution | lower  }}"
+    signed_by: https://packagecloud.io/crowdsec/crowdsec/gpgkey
+    suites: ["{{ ansible_distribution_release|lower }}"]
+    components: [main]
+    state: present
+    enabled: true
+
+- name: Ensure Crowdsec is installed
+  ansible.builtin.apt:
+    pkg:
+      - crowdsec
+      - crowdsec-firewall-bouncer-nftables
+    update_cache: true

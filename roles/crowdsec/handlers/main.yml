@@ -1,6 +1,5 @@
----
-- name: Reload nftables
+- name: Reload crowdsec
   ansible.builtin.service:
-    name: nftables
+    name: crowdsec-firewall-bouncer
     state: reloaded
   listen: "Reload firewall services"
