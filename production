@@ -1,2 +1,5 @@
 [webservers]
-bristolhackspace.org
+cloud01.bristolhackspace.org
+
+[portals]
+wyse-portal.bristolhackspace.local

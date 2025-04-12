@@ -7,4 +7,5 @@
     line: "PasswordAuthentication no"
     state: present
     backup: yes
+  when: disable_password_login
   notify: Restart ssh server

@@ -1,0 +1,8 @@
+---
+- name: Ensure Desktop packages are installed
+  ansible.builtin.apt:
+    pkg:
+      - sway
+      - pipewire
+    update_cache: true
+

@@ -5,3 +5,8 @@
     - firewall
     - crowdsec
     - caddy
+
+- hosts: portals
+  roles:
+    - general
+    - sway
